@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/quick.css' %}">
+{% endblock %}
+{% block title %} Quick View{% endblock %}
+{% block content%}
+<div class="box-container">
+
+    <div class="box">
+
+        <div class="image-container">
+
+            <div class="big-image">
+                <img src="{{product.img.url}}" alt="">
+            </div>
+
+
+
+        </div>
+
+        <div class="content">
+
+            <h3 class="title">{{product.name}}</h3>
+            <div class="price"> Price : {{product.price}}</div><br>
+            <h1 style="margin-top: 10px;"> Rating : {{product.rating}}</h1>
+            <h1 style="margin-top: 10px;"> Location : {{product.location}}</h1>
+            <p> {{product.description}}</p>
+
+
+
+            <!--   <a href="#"><button class="btn"> <i class="fas fa-shopping-cart"></i> add to cart </button></a>-->
+            <button class="btn add-to-cart" id="{{product.id}}"><i class="fas fa-shopping-cart"></i> add to cart</button>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'javascript/cart.js' %}"></script> {% endblock %}

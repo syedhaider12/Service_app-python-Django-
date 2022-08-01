@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block title %} Home {% endblock %}
+{% block content %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'images/home.jpg'%}" class="d-block w-100" alt="..." style="height: 600px;">
+            <div class="carousel-caption  d-md-block">
+                <form method="POST" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    <div class="container h-100">
+                        <div class="d-flex justify-content-center h-100" style="margin-bottom: 150px;">
+                            <div class="searchbar">
+                                <input class="search_input" type="text" name="search" placeholder="Search..."
+                                    autocomplete="off" required="required">
+                                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+{% if res is none %}
+<div class="container">
+
+
+    <div class="text-center my-5">
+        <h3 class="st">Resturant</h3>
+    </div>
+    <div class="row ">
+        {% for de in re %}
+        <div class="col-lg-3 col-md-6 col-12 my-3 d-flex justify-content-center ">
+            <div class="card" style="width:250px">
+                <img class="card-img-top" src="{{de.img.url}}" alt="Card image cap" style="height: 250px; ">
+                <div class="card-body">
+                    <h5 class="card-title ">{{de.name}}</h5>
+                    <p class="card-text">Price {{de.price}}</p>
+
+                    <a href="{% url  'quickview'  de.id %}"><button class="btn"
+                            style="background-color: brown; color:white;outline:none;border: none; box-shadow: none "> Quick View
+                        </button></a>
+
+
+                    <button class="add-to-cart btn" id="{{de.id}}"
+                        style="background-color: brown; color:white; outline:none;border: none; box-shadow: none ">Add
+                        cart</button>
+
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center my-5">
+        <h3 class="st">Home service</h3>
+    </div>
+    <div class="row ">
+        {% for de in hom %}
+        <div class="col-lg-3 col-md-6 col-12 my-3 d-flex justify-content-center ">
+            <div class="card" style="width:250px">
+                <img class="card-img-top" src="{{de.img.url}}" alt="Card image cap" style="height: 250px; ">
+                <div class="card-body">
+                    <h5 class="card-title ">{{de.name}}</h5>
+                    <p class="card-text">Price {{de.price}}</p>
+                    <a href="{% url  'quickview'  de.id %}"><button class="btn"
+                            style="background-color: brown; color:white ; outline:none;border: none; box-shadow: none"> Quick View
+                        </button></a>
+                    <button class="add-to-cart btn" id ="{{de.id}}"
+                        style="background-color: brown; color:white; outline:none;border: none; box-shadow: none">Add cart</button>
+
+
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center my-5">
+        <h3 class="st">Plumber</h3>
+    </div>
+    <div class="row ">
+        {% for de in plum %}
+        <div class="col-lg-3 col-md-6 col-12 my-3 d-flex justify-content-center ">
+            <div class="card" style="width:250px">
+                <img class="card-img-top" src="{{de.img.url}}" alt="Card image cap" style="height: 250px; ">
+                <div class="card-body">
+                    <h5 class="card-title ">{{de.name}}</h5>
+                    <p class="card-text">Price {{de.price}}</p>
+
+                    <a href="{% url  'quickview'  de.id %}"><button class="btn"
+                            style="background-color: brown; color:white; outline:none;border: none; box-shadow: none"> Quick View
+                        </button></a>
+                    <button class="add-to-cart btn" id="{{de.id}}"
+                        style="background-color: brown; color:white; outline:none;border: none; box-shadow: none">Add cart</button>
+
+
+
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+</div>
+{% else %}
+<div>
+    <div class="text-center my-5">
+        <h3 class="st">{{search}}</h3>
+    </div>
+    <div class="row ">
+        {% for de in res %}
+        <div class="col-lg-3 col-md-6 col-12 my-3 d-flex justify-content-center ">
+            <div class="card" style="width:250px">
+                <img class="card-img-top" src="{{de.img.url}}" alt="Card image cap" style="height: 250px; ">
+                <div class="card-body">
+                    <h5 class="card-title ">{{de.name}}</h5>
+                    <p class="card-text">Price {{de.price}}</p>
+
+                    <a href="{% url  'quickview'  de.id %}"><button class="btn"
+                            style="background-color: brown; color:white;"> Quick View </button></a>
+                            
+
+
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
+
+{% endif %}
+
+{% endblock %}
+{% block javascript %}
+ {% endblock %}

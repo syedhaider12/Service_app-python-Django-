@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} {% endblock %}</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  {% block css %}
+
+  {% endblock %}
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/b2e44f6dad.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg   " style="background-color:brown;">
+    <div class="container-fluid">
+      <a class="navbar-brand font-weight-bold text-white mx-4 animate__heartBeat st "
+        href="{% url 'home' %}">SERVICES</a>
+
+      <button class="navbar-toggler" style="border-color:white; outline:none" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+
+        <span class="" role="button"><i class="fa fa-bars" aria-hidden="true" style="color:white;"></i></span>
+
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+        <div class="navbar-nav mx-5">
+          <a class="nav-link text-white" href="{% url 're' %}"><i class="fas fa-utensils"></i> Resturant</a>
+          <a class="nav-link text-white" href="{% url 'pl' %}"><i class="fas fa-tools"></i> Plumber</a>
+          <a class="nav-link text-white" href="{% url 'ho' %}"><i class="fas fa-home"></i> Home Service</a>
+          {% if user.is_authenticated %}
+          <li class="nav-item  font-weight-bold  ml-4 text-white ">
+            Hello, {{user.first_name}}
+          </li>
+          <li class="nav-item ml-4 ">
+            <a class="nav-link text-white mx-3" href="{% url 'logout' %}"> <i class="fas fa-sign-in-alt"></i> Log
+              out</a>
+          </li>
+          {% else %}
+          <a class="nav-link text-white mx-2" href="{% url 'signin' %}"> <i class="fas fa-sign-in-alt"></i> Sign In</a>
+          <a class="nav-link text-white" href="{% url 'sign' %}"> <i class="fa fa-user-o"> </i> Sign Up</a>
+          {% endif %}
+          <a class="nav-link text-white" href="{% url 'registration' %}"><i class="fas fa-utensils"></i> Register your Bussiness</a>
+         <!-- <button class="clear-cart btn " style="outline:none;border: none; box-shadow: none;background-color: white; color:brown ">Clear Cart</button> -->
+        </div>
+      </div>
+
+
+    </div>
+    </div>
+    </div>
+  </nav>
+
+  {% block content %} {% endblock %}
+  <!--
+  <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="show-cart table">
+
+          </table>
+          <div>Total price: $<span class="total-cart"></span></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Order now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+
+
+
+  <footer>
+    <div class="container-fulid p-4 text-center" style="background-color: brown;">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-0 text-white st">My Account</h5>
+
+          <ul class="list-unstyled  ">
+            <li class="mb-0">
+              <a href="{% url 'signin' %}" class=" non-underline-link text-white">Sign In</a>
+            </li>
+            <li>
+              <a href="{% url 'sign' %}" class=" text-white ">Sign Up</a>
+            </li>
+
+
+          </ul>
+
+        </div>
+        <div class="col-lg-3 col-md-3  col-sm-6 col-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-0 text-white st">Information</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="" class="text-white">About Us</a>
+            </li>
+            <li>
+              <a href="{% url 'contact' %}" class="text-white">Contact Us</a>
+            </li>
+
+
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-0 text-white st"> Qiuck LINKS</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a class="nav-link text-white" href="{% url 're' %}"><i class="fas fa-utensils"></i> Resturant</a>
+            </li>
+            <li>
+              <a class="nav-link text-white" href="{% url 'pl' %}"><i class="fas fa-tools"></i> Plumber</a>
+            </li>
+            <li>
+              <a class="nav-link text-white" href="{% url 'ho' %}"><i class="fas fa-home"></i> Home Service</a>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-0 text-white st">FOLLOW US</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!" class="text-white"><i class="fab fa-facebook-square"></i></a>
+
+            </li>
+            <li>
+              <a href="#!" class="text-white"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#!" class="text-white"><i class="fab fa-instagram"></i></a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  {% block javascript %} {% endblock %}
+</body>
+
+</html>

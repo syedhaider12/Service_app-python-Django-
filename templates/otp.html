@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/otp.css' %}">
+{% endblock %}
+{% block title %} OTP {% endblock %}
+{% block content %}
+<body>
+    <div class="signup-form">
+        <form action="{% url 'otp' %}" method="post">
+            {% csrf_token %}
+            <h2>OTP Verification</h2>
+            <p>Please Enter The OTP Code!</p>
+            <hr>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-mobile"></i>
+                        </span>                    
+                    </div>
+                    <input type="text" class="form-control" name="verify" placeholder="OTP Code" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
+            </div>
+            {% for message in messages %}
+                <div class="alert alert-info" role="alert">
+                   {{message}}
+                  </div>
+            {% endfor %}
+        </form>
+        
+    </div>
+    </body> 
+{% endblock %}
+
+
+

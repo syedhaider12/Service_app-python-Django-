@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Resturant {% endblock %}
+{% block content %} 
+
+
+
+
+
+<div class="container my-5">
+    <div class="row">
+        {% for de in res %}
+        <div class="col-lg-3 col-md-6 col-12 my-3 d-flex justify-content-center ">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{de.img.url}}"  alt="Card image cap" style="height: 250px; " >
+                <div class="card-body">
+                    <h5 class="card-title ">{{de.name}}</h5>
+                    <p class="card-text">{{de.price}}</p>
+                    <a href="{% url  'quickview'  de.id %}"><button class="btn" style="background-color: brown; outline:none;border: none; box-shadow: none; color:white "> Quick View </button></a>
+                    <button class="add-to-cart btn "style="background-color: brown; color:white; outline:none;border: none; box-shadow: none" id="{{product.id}}">Add cart</button>
+                    
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+{% endblock %}
+{% block javascript %} <script src="{% static 'javascript/cart.js' %}"></script>  {% endblock %}
